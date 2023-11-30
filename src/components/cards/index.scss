@@ -1,0 +1,90 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    img{
+        max-width: 100%;
+    }
+}
+
+
+.wishlist{
+    max-width: 1500px;
+    margin: 40px  auto;
+    display: flex;
+    min-height: 0vh;
+    gap: 30px;
+    background-color: chocolate;
+    flex-wrap: wrap;
+    ul{
+        display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    min-height: 400px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: white;
+    .img-box{
+        width: 200px;
+        height: 300px;
+    }
+    border: 1px solid black;
+    }
+    margin: 20px;
+}
+
+.Basketwrap{
+    background-color: chocolate;
+min-height: 20vh;
+}
+
+.Basket{
+    max-width: 1500px;
+    margin: 40px  auto;
+    display: flex;
+    min-height: 0vh;
+    gap: 30px;
+    flex-wrap: wrap;
+    ul{
+        display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    min-height: 400px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: white;
+    .img-box{
+        width: 200px;
+        height: 300px;
+    }
+    border: 1px solid black;
+    }
+    margin: 20px;
+}
+
+
+
+.cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.cards ul{
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    min-height: 400px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    .img-box{
+        width: 200px;
+        height: 300px;
+    }
+    border: 1px solid black;
+}
