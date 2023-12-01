@@ -9,6 +9,38 @@
     }
 }
 
+:root{
+    --bg-color:#black;
+    --color:#steelblue;
+}
+
+
+
+
+body{
+    background-color: var(--color);
+    color:var(--bg-color) ;
+    transition: 300ms;
+}
+
+.dark{
+    background-color: steelblue;
+    color: black;
+    h2{
+        color: white;
+    }
+   
+}
+
+h2{
+    font-size: 40px;
+    margin: 20px;
+}
+
+.Wishlistwrap{
+min-height: 20vh;
+padding: 20px;
+}
 
 .wishlist{
     max-width: 1500px;
@@ -16,7 +48,6 @@
     display: flex;
     min-height: 0vh;
     gap: 30px;
-    background-color: chocolate;
     flex-wrap: wrap;
     ul{
         display: flex;
@@ -27,41 +58,15 @@
     align-items: center;
     gap: 20px;
     background-color: white;
+    padding: 20px;
+
+    
     .img-box{
         width: 200px;
         height: 300px;
     }
     border: 1px solid black;
-    }
-    margin: 20px;
-}
-
-.Basketwrap{
-    background-color: chocolate;
-min-height: 20vh;
-}
-
-.Basket{
-    max-width: 1500px;
-    margin: 40px  auto;
-    display: flex;
-    min-height: 0vh;
-    gap: 30px;
-    flex-wrap: wrap;
-    ul{
-        display: flex;
-    flex-direction: column;
-    max-width: 300px;
-    min-height: 400px;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    background-color: white;
-    .img-box{
-        width: 200px;
-        height: 300px;
-    }
-    border: 1px solid black;
+    
     }
     margin: 20px;
 }
@@ -72,9 +77,14 @@ min-height: 20vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 30px;
+    max-width: 1200px;
+    margin: 50px auto;
+    position: relative;
+
 }
 
 .cards ul{
+    background-color: white;
     display: flex;
     flex-direction: column;
     max-width: 300px;
@@ -82,9 +92,33 @@ min-height: 20vh;
     justify-content: center;
     align-items: center;
     gap: 20px;
+    padding: 20px;
     .img-box{
         width: 200px;
         height: 300px;
     }
     border: 1px solid black;
+}
+
+button{
+    background-color: grey;
+    border: none;
+    outline: none;
+    padding: 10px;
+    
+}
+
+.fakenav{
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 20px;
+   
+    button{
+        border-radius: 5px;
+        width: 100px;
+        height: 50px;
+        color: black;
+background-color: lightslategray;    }
 }

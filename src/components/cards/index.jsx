@@ -4,20 +4,25 @@ import "./index.scss"
 
 function Cards() {
   const [open, setOpen] = useState(false)
-  const [basket, setBasket] = useState(
-    localStorage.getItem("basket")
-      ? JSON.parse(localStorage.getItem("basket"))
+  const [wishlistitem, setWishlistitem] = useState(
+    localStorage.getItem("wishlistitem")
+      ? JSON.parse(localStorage.getItem("wishlistitem"))
       : []
   );
   const [product, setProduct] = useState([]);
   const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
-    localStorage.setItem("basket", JSON.stringify(basket));
+    localStorage.setItem("wishlistitem", JSON.stringify(wishlistitem));
   });
+  
   useEffect(() => {
     getProductFetch();
   }, []);
+
+  function changeTheme() {
+    document.body.classList.toggle("dark")
+  }
 
   async function getProductFetch() {
     const data = await fetch("https://fakestoreapi.com/products");
@@ -25,14 +30,16 @@ function Cards() {
     setProduct(res);
     setIsloading(false);
   }
-  function handleAddBasket(item) {
-    const elementIndex = basket.findIndex((x) => x.id === item.id);
+  
+
+  function handleAddWishlist(item) {
+    const elementIndex = wishlistitem.findIndex((x) => x.id === item.id);
     if (elementIndex !== -1) {
-      const newBasket = [...basket];
-      newBasket[elementIndex].count++;
-      setBasket(newBasket);
+      const newWishlist = [...wishlistitem];
+      newWishlist[elementIndex].count++;
+      setWishlistitem(newWishlist);
     } else {
-      setBasket([...basket, { ...item, count: 1 }]);
+      setWishlistitem([...wishlistitem, { ...item, count: 1 }]);
     }
   }
 
@@ -40,49 +47,22 @@ function Cards() {
     setOpen(!open)
   }
 
-  function handleRemoveBasket(id) {
-    setBasket(basket.filter((x) => x.id !== id));
+  function RemoveWishlist(id) {
+    setWishlistitem(wishlistitem.filter((x) => x.id !== id));
   }
-  // function ChanhgeCount(isAdd, item) {
-  //   const elementIndex = basket.findIndex((x) => x.id === item.id);
-  //   const newBasket = [...basket];
-  //   if (isAdd) {
-  //     newBasket[elementIndex].count++;
-  //     setBasket(newBasket);
-  //   } else {
-  //     if (newBasket[elementIndex].count > 0) {
-  //       newBasket[elementIndex].count--;
-  //       setBasket(newBasket);
-  //     }
-  //   }
-  // }
+
   return (
     <div className="app">
+      <div className="fakenav">
       <h2 onClick={Toggle}>Wishlist: </h2>
+      <button onClick={changeTheme}>Change Theme</button>
+      </div>
+      
       <div className={Toggle ? 'wishlist' : ''}>
-        
-        {basket.map((x) => (
-          <ul key={x.id}>
-          <h5>Title : {x.title}</h5>
-          <p>Price :{x.price} $</p>
-          <p>Description : {x.description.slice(0, 40)}</p>
-          <div className="img-box">
-            <img src={x.image} alt="" />
-          </div>
-          <button onClick={() => handleRemoveBasket(x.id)}>
-              Remove Basket
-            </button>
-        </ul>
+      
 
-            
-          
-        ))}
-      </div >
-      <div className="Basketwrap">
-      <h2 onClick={Toggle}>Basket</h2>
-
-<div className={Toggle ? 'wishlist' : ''}>
-  {basket.map((x) => (
+<div className="wishlist">
+  {wishlistitem.map((x) => (
     <ul key={x.id}>
     <h5>Title : {x.title}</h5>
     <p>Price :{x.price} $</p>
@@ -91,9 +71,11 @@ function Cards() {
       <img src={x.image} alt="" />
     </div>
   
-    <button onClick={() => handleRemoveBasket(x.id)}>
-        Remove Basket
+    <div className="btn-add">
+    <button onClick={() => RemoveWishlist(x.id)}>
+        Remove item from Favorites
       </button>
+    </div>
   </ul>
 
       
@@ -101,6 +83,7 @@ function Cards() {
   ))}
 </div >
       </div>
+      <hr />
 
       <div className="cards">
       {isLoading ? (
@@ -111,11 +94,11 @@ function Cards() {
             <ul key={x.id}>
               <h5>Title : {x.title}</h5>
               <p>Price :{x.price} $</p>
-              <p>Description : {x.description.slice(0, 40)}</p>
+              <p>Description : {x.description}</p>
               <div className="img-box">
                 <img src={x.image} alt="" />
               </div>
-              <button onClick={() => handleAddBasket(x)}>Add Basket</button>
+              <button onClick={() => handleAddWishlist(x)}>Add to Favorites</button>
             </ul>
           ))}
         </>
